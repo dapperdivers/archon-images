@@ -12,6 +12,7 @@ RUN apt-get update && apt-get install -y \
 
 # Copy and install Python dependencies
 COPY pyproject.toml uv.lock ./
+
 RUN pip install --upgrade pip && pip install --user --no-cache-dir -e . --group server
 
 # Runtime stage
@@ -19,6 +20,7 @@ FROM python:3.12-slim
 
 # Re-declare ARG for runtime stage
 ARG BUILD_VERSION="2025-09-01T13:00:00Z-remove-manual-playwright"
+
 
 WORKDIR /app
 
